@@ -42,12 +42,10 @@ function mostrarTasks() {
 
         <button onClick="deletarTask(${pos})" type="button" class="iconify trash" data-icon="mdi-trash"></button>
     </div>`
-        
     })
     taskList.innerHTML = novoItem
     let armazenadas = JSON.stringify(listaDeTarefas)
     localStorage.setItem("Lista", armazenadas)
-
 }
 
 function concluirTask(pos){

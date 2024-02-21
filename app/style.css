@@ -86,8 +86,8 @@ main {
     align-items: center;
     border: solid 1px;
     height: auto;
-    width: auto;
     padding: 5px;
+    width: auto;
     border-radius: 5px;
     border-left: solid 5px rgb(49, 49, 49);
     background-color: rgb(252, 247, 241);
@@ -128,10 +128,14 @@ main {
     .form {
         width: 400px;
     }
+    .taskBox {
+        padding: 0px;
+    }
 }
 
 @media (max-width: 432px) {
     .form {
-        width: 300px;
+        width: 350px;
     }
+    
 }
