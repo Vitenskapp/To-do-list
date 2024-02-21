@@ -33,7 +33,6 @@ function carregarStorage() {
 }
 
 function mostrarTasks() {
-    
     let novoItem = ''
     listaDeTarefas.forEach((el, pos) => {
         novoItem += `<div id="taskBox" class="taskBox">
@@ -43,9 +42,9 @@ function mostrarTasks() {
 
         <button onClick="deletarTask(${pos})" type="button" class="iconify trash" data-icon="mdi-trash"></button>
     </div>`
-        taskList.innerHTML = novoItem
+        
     })
-
+    taskList.innerHTML = novoItem
     let armazenadas = JSON.stringify(listaDeTarefas)
     localStorage.setItem("Lista", armazenadas)
 
