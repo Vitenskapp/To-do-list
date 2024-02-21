@@ -99,7 +99,7 @@ main {
     width: 15px;
     height: 15px;
     padding: 5px;
-    border-radius: 50%;
+    border-radius: 100px;
     margin-left: 15px;
     cursor: pointer;
 }
@@ -124,3 +124,14 @@ main {
     color: green;
 }
 
+@media (max-width: 560px) {
+    .form {
+        width: 400px;
+    }
+}
+
+@media (max-width: 432px) {
+    .form {
+        width: 300px;
+    }
+}
