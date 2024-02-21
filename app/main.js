@@ -5,51 +5,63 @@ let taskList = document.querySelector('#taskList')
 let listaDeTarefas = []
 
 function criarTask() {
-    
     listaDeTarefas.push({
         task: inputTask.value,
         isChecked: false
     })
 
-    let novoItem = ''
-    listaDeTarefas.map((el, pos) => {
-        novoItem += `<div id="taskBox"       class="taskBox">
-        <input class="iconify check" data-icon="mdi-check" onClick="concluirTask(evt, ${pos})" id="check">
-        <p id="task" class="task">${el.task}</p>
-        <button onClick="deletarTask(${pos})" type="button" class="iconify trash" data-icon="mdi-trash"></button>
-    </div>`
-        taskList.innerHTML = novoItem;
-    })
-
-    console.log(listaDeTarefas)
+    mostrarTasks()
 }
 
-function concluirTask(evt, pos){
-    if (listaDeTarefas[pos].isChecked) {
-        listaDeTarefas[pos].isChecked = false
-        evt.target.style.backgroundColor = "white"
-    } else {
-        listaDeTarefas[pos].isChecked = true;
-        evt.target.style.backgroundColor = "green"
+function carregarStorage() {
+    if (localStorage.getItem('Lista')) {
+        let recString = localStorage.getItem('Lista')
+        listaDeTarefas = JSON.parse(recString)
+    let novoItem = ''
+    listaDeTarefas.forEach((el, pos) => {
+        novoItem += `<div id="taskBox" class="taskBox">
+        <input class="iconify check ${el.isChecked && "done"}" data-icon="mdi-check" onClick="concluirTask(${pos})" id="check">
+
+        <p id="task" class="task">${el.task}</p>
+
+        <button onClick="deletarTask(${pos})" type="button" class="iconify trash" data-icon="mdi-trash"></button>
+    </div>`
+        taskList.innerHTML = novoItem
+    })
+    console.log('rodou')
     }
+}
+
+function mostrarTasks() {
+    
+    let novoItem = ''
+    listaDeTarefas.forEach((el, pos) => {
+        novoItem += `<div id="taskBox" class="taskBox">
+        <input class="iconify check ${el.isChecked && "done"}" data-icon="mdi-check" onClick="concluirTask(${pos})" id="check">
+
+        <p id="task" class="task">${el.task}</p>
+
+        <button onClick="deletarTask(${pos})" type="button" class="iconify trash" data-icon="mdi-trash"></button>
+    </div>`
+        taskList.innerHTML = novoItem
+    })
+
+    let armazenadas = JSON.stringify(listaDeTarefas)
+    localStorage.setItem("Lista", armazenadas)
+
+}
+
+function concluirTask(pos){
+    listaDeTarefas[pos].isChecked = !listaDeTarefas[pos].isChecked
+    mostrarTasks()
+    carregarStorage()
 }
 
 function deletarTask(pos) {
     listaDeTarefas.splice(pos, 1)
-    console.log(listaDeTarefas)
-    recarregarLista()
-}
-
-function recarregarLista() {
-    let novoItem = ''
-    listaDeTarefas.map((el, pos) => {
-        novoItem += `<div id="taskBox"       class="taskBox">
-        <input class="iconify check" data-icon="mdi-check" onClick="concluirTask(evt, ${pos})" id="check">
-        <p id="task" class="task">${el.task}</p>
-        <button onClick="deletarTask(${pos})" type="button" class="iconify trash" data-icon="mdi-trash"></button>
-    </div>`
-        taskList.innerHTML = novoItem;
-    })
+    mostrarTasks()
+    carregarStorage()
 }
 
 button.addEventListener('click', criarTask)
+document.body.addEventListener('load', carregarStorage)
