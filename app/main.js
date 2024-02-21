@@ -9,8 +9,11 @@ function criarTask() {
         task: inputTask.value,
         isChecked: false
     })
-
     mostrarTasks()
+    mostrarAlerta()
+    setTimeout(() => {
+        esconderAlerta()
+    }, 1000)
 }
 
 function carregarStorage() {
@@ -28,8 +31,18 @@ function carregarStorage() {
     </div>`
         taskList.innerHTML = novoItem
     })
-    console.log('rodou')
     }
+}
+
+function mostrarAlerta() {
+    let alerta = document.querySelector('.alerta')
+    alerta.style.transition = "0.2s ease-in-out"
+    alerta.style.opacity = "1"
+}
+function esconderAlerta() {
+    let alerta = document.querySelector('.alerta')
+    alerta.style.transition = "1s ease-in-out"
+    alerta.style.opacity = "0"
 }
 
 function mostrarTasks() {
