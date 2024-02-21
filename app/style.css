@@ -88,7 +88,7 @@ main {
     margin: 10px 0px;
     display: flex;
     align-items: center;
-    border: solid 1px;
+    border: solid 2px;
     height: auto;
     padding: 5px;
     width: auto;
@@ -99,7 +99,7 @@ main {
 
 .taskList .taskBox .check{
     background-color: white;
-    border: solid 1px;
+    border: solid 2px;
     padding: 5px;
     border-radius: 50%;
     margin-left: 5px;
@@ -128,9 +128,9 @@ main {
 
 .alerta {
     padding: 7px 15px;
-    box-shadow: 0px 0px 5px 1px lightgray;
+    box-shadow: 0px 0px 5px 2px lightgray;
     background-color: whitesmoke;
-    border: solid 1px limegreen;
+    border: solid 2px limegreen;
     color: limegreen;
     border-radius: 5px;
     position: fixed;
@@ -147,7 +147,7 @@ main {
 
     .taskList .taskBox .check{
         background-color: white;
-        border: solid 1px;
+        border: solid 2px;
         padding: 5px;
         border-radius: 50%;
         width: 25px;
@@ -170,7 +170,7 @@ main {
 
     .taskList .taskBox .check{
         background-color: white;
-        border: solid 1px;
+        border: solid 2px;
         padding: 5px;
         border-radius: 50%;
         width: 35px;
