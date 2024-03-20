@@ -60,7 +60,7 @@ button {
   outline: none;
   width: 100%;
   font-size: 1.2rem;
-  background-color: #4a4a4a;
+  background-color: #8ede3e;
   color: #fff;
   cursor: pointer;
 }
@@ -79,7 +79,7 @@ button {
   margin-bottom: 0.5rem;
   border-radius: 4px;
   font-weight: bold;
-  background-color: #8ede3e;
+  background-color: #3a3a3a;
   display: flex;
   justify-content: space-between;
   align-items: center;
