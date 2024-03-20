@@ -1,87 +1,104 @@
-//==Declaração de variáveis==
-let inputTask = document.querySelector('#inputTask')
-let button = document.querySelector('#createButton')
-let taskList = document.querySelector('#taskList')
+const taskInput = document.querySelector('#input');
+const addBtn = document.querySelector('#add-btn');
+const taskList = document.querySelector('#task-list');
+const circleProgress = document.querySelector('circle-progress');
+const alert = document.querySelector('.alert');
+const completedMessage = document.querySelector('.completed-message');
 
-let listaDeTarefas = []
 
 
-//==Criação de Tasks==
-function criarTask() {
-    listaDeTarefas.push({
-        task: inputTask.value,
-        isChecked: false
-    })
-    mostrarTasks()
-    mostrarAlerta()
-    setTimeout(() => {
-        esconderAlerta()
-    }, 1000)
+let taskArray = [];
+
+const createTask = (task) => {
+  if (task.trim() === '') {
+    alert.setAttribute('style', 'display: block;');
+    return taskInput.classList.add('error');
+  } else {
+    alert.setAttribute('style', 'display: none;');
+ taskInput.classList.remove('error');
+  }
+
+  taskArray.push({
+    id: Date.now(),
+    task: task,
+    completed: false
+  });
+
+  let newLi = "";
+  taskArray.map((el) => {
+    newLi += `
+      <li>
+        <i class="material-icons check ${el.completed?"completed":"not-completed"}" onClick="checkTask(${el.id})">check</i>
+        <p>${el.task}</p>
+        <i class="material-icons delete" onClick="removeTask(${el.id})">delete</i>
+      </li>`
+
+    taskList.innerHTML = newLi;
+  })
+  saveStorage();
+  updateProgressCircle();
 }
 
-function mostrarAlerta() {
-    let alerta = document.querySelector('.alerta')
-    alerta.style.transition = "0.2s ease-in-out"
-    alerta.style.opacity = "1"
-}
-function esconderAlerta() {
-    let alerta = document.querySelector('.alerta')
-    alerta.style.transition = "1s ease-in-out"
-    alerta.style.opacity = "0"
+const removeTask = (id) => {
+  taskArray = taskArray.filter((el)  => el.id !== id);
+  saveStorage();
+  updateProgressCircle();
+  refreashList();
 }
 
-function mostrarTasks() {
-    let novoItem = ''
-    listaDeTarefas.forEach((el, pos) => {
-        novoItem += `<div id="taskBox" class="taskBox">
-        <input class="iconify check ${el.isChecked && "done"}" data-icon="mdi-check" onClick="concluirTask(${pos})" id="check">
-        
-        <p id="task" class="task">${el.task}</p>
-        
-        <button onClick="deletarTask(${pos})" type="button" class="iconify trash" data-icon="mdi-trash"></button>
-        </div>`
-    })
-    taskList.innerHTML = novoItem
-    let armazenadas = JSON.stringify(listaDeTarefas)
-    localStorage.setItem("Lista", armazenadas)
-    carregarStorage()
-}
-
-
-
-//==Eventos manipulação de Tasks==
-function concluirTask(pos){
-    listaDeTarefas[pos].isChecked = !listaDeTarefas[pos].isChecked
-    mostrarTasks()
-}
-
-function deletarTask(pos) {
-    listaDeTarefas.splice(pos, 1)
-    mostrarTasks()
-}
-button.addEventListener('click', criarTask)
-
-
-
-//==Carregamento de localStorage==
-function carregarStorage() {
-    if (localStorage.getItem('Lista')) {
-        let recString = localStorage.getItem('Lista')
-        listaDeTarefas = JSON.parse(recString)
-    let novoItem = ''
-    listaDeTarefas.forEach((el, pos) => {
-        novoItem += `<div id="taskBox" class="taskBox">
-        <input class="iconify check ${el.isChecked && "done"}" data-icon="mdi-check" onClick="concluirTask(${pos})" id="check">
-
-        <p id="task" class="task">${el.task}</p>
-
-        <button onClick="deletarTask(${pos})" type="button" class="iconify trash" data-icon="mdi-trash"></button>
-    </div>`
-        taskList.innerHTML = novoItem
-    })
+const checkTask = (id) => {
+  taskArray = taskArray.map((el) => {
+    if (el.id === id) {
+      el.completed = !el.completed;
+    return el;
     }
+    return el;
+  })
+  refreashList();
+  saveStorage();
+  updateProgressCircle();
 }
-document.body.addEventListener('load', carregarStorage)
 
+const updateProgressCircle = () => {
+  const totalTasks = taskArray.length;
+const completedTasks = taskArray.filter(task => task.completed).length;
+  circleProgress.value = completedTasks;
+  circleProgress.max = totalTasks;
+  if (completedTasks === totalTasks){
+    completedMessage.setAttribute('style', 'display: block;');
+  } 
+  else {
+    completedMessage.setAttribute('style', 'display: none;');
+  }
+  if(totalTasks === 0){
+    completedMessage.setAttribute('style', 'display: none;');
+  }
+}
 
+const refreashList = () => {
+  let newLi = "";
+  taskArray.map((el) => {
+    newLi += `
+      <li>
+        <i class="material-icons check ${el.completed?"completed":"not-completed"}" onClick="checkTask(${el.id})">check</i>
+        <p>${el.task}</p>
+        <i class="material-icons delete" onClick="removeTask(${el.id})">delete</i>
+      </li>`
 
+  })
+  taskList.innerHTML = newLi;
+}
+
+const saveStorage = () => {
+  localStorage.setItem('taskArray', JSON.stringify(taskArray));
+}
+
+addBtn.addEventListener('click', () => createTask(taskInput.value))
+window.addEventListener('load', () => {
+  const savedTasks = JSON.parse(localStorage.getItem('taskArray'));
+  if (savedTasks) {
+    taskArray = savedTasks;
+    refreashList();
+  }
+  updateProgressCircle();
+})
