@@ -1,187 +1,51 @@
+/*Imports*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+/*Global*/
 * {
-    margin: 0px;
-    padding: 0px;
-    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  width: 100%;
 }
 
 body {
-    overflow-x: hidden;
-    width: 100vw;
-    height: 100%;
-    background-color: rgb(249, 249, 249);
+  font-family: 'Poppins', sans-serif;
+  background-color: #1a1a1a;
+  color: #fff;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-header {
-    background-color: rgba(0, 0, 0, 0.907);
-    color: white;
-    font-weight: bolder;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 8vh;
-    font-size: 11px;
+.title {
+  color: #fff;
+  font-size: 2.5rem;
 }
 
-main {
-    width: 100vw;
-    height: auto;
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.container {
+  width: fit-content;
+  max-width: 800px;
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #2a2a2a;
 }
 
-.form {
-    display: flex;
-    flex-direction: column;
-    width: 555px;
-    height: fit-content;
-}
-
-.formInput {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    border: solid 2px;
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-.formInput input {
-    border-radius: 5px 0px 0px 5px;
-    padding-left: 15px;
-    border: none;
-    width: 100%;
-    height: 35px;
-}
-
-.formInput input:focus {
-    outline: none;
-}
-
-.formInput input:focus::placeholder {
-    color: transparent;
-}
-
-.formInput button {
-    cursor: pointer;
-    border: none;
-    border-left: solid 2px;
-    width: 20%;
-    height: 35px;
-    background-color: rgba(255, 228, 196, 0.652);
-    transition: 200ms ease-in-out;
-}
-
-.formInput button:hover {
-    background-color: rgba(208, 187, 162, 0.652);
-}
-
-.taskList {
-    margin-top: 20px;
-    height: 100%;
-    width: 100%;
-}
-
-.taskList .taskBox{
-    margin: 10px 0px;
-    display: flex;
-    align-items: center;
-    border: solid 2px;
-    height: auto;
-    padding: 5px;
-    width: auto;
-    border-radius: 5px;
-    border-left: solid 5px rgb(49, 49, 49);
-    background-color: rgb(252, 247, 241);
-}
-
-.taskList .taskBox .check{
-    background-color: white;
-    border: solid 2px;
-    padding: 5px;
-    border-radius: 50%;
-    margin-left: 5px;
-    cursor: pointer;
-}
-
-.taskList .taskBox .task {
-    display: flex;
-    align-items: center;
-    margin-left: 25px;
-    width: 420px;
-    word-break: break-all;
-}
-
-.taskList .taskBox .trash{
-    width: 25px;
-    height: 25px;
-    padding: 5px;
-    margin-left: 15px;
-    cursor: pointer;
-}
-
-.done {
-    color: green;
-}
-
-.alerta {
-    padding: 7px 15px;
-    box-shadow: 0px 0px 5px 2px lightgray;
-    background-color: whitesmoke;
-    border: solid 2px limegreen;
-    color: limegreen;
-    border-radius: 5px;
-    position: fixed;
-    right: 15px;
-    bottom: 15px;
-    opacity: 0;
-    z-index: 1;
-}
-
-@media (max-width: 560px) {
-    .form {
-        width: 400px;
-    }
-
-    .taskList .taskBox .check{
-        background-color: white;
-        border: solid 2px;
-        padding: 5px;
-        border-radius: 50%;
-        width: 25px;
-        margin-left: 5px;
-        cursor: pointer;
-    }
-
-    .taskList .taskBox .trash{
-        width: 35px;
-        padding: 5px;
-        margin-left: 15px;
-        cursor: pointer;
-    }
-}
-
-@media (max-width: 432px) {
-    .form {
-        width: 300px;
-    }
-
-    .taskList .taskBox .check{
-        background-color: white;
-        border: solid 2px;
-        padding: 5px;
-        border-radius: 50%;
-        width: 35px;
-        margin-left: 5px;
-        cursor: pointer;
-    }
-
-    .taskList .taskBox .trash{
-        width: 50px;
-        padding: 5px;
-        margin-left: 15px;
-        cursor: pointer;
-    }
-}
+input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
