@@ -131,6 +131,7 @@ button {
 }
 
 circle-progress{
+  font-family: 'Poppins', sans-serif;
   margin-top: 1rem;
 }
 
