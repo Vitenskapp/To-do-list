@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="/app/assets/to-do-list.png" type="png">
-    <title>Lista de tarefas</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Todo list</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
-<body onload="carregarStorage()">
-    <span class="alerta">Tarefa criada</span>
-    <header>
-        <h1>Lista de tarefas</h1>
-    </header>
-    <main>
-        <div id="form" class="form">
-            <div id="formInput" class="formInput">
-                <input type="text" id="inputTask" class="inputTask" placeholder="Digitar...">
-                <button type="button" id="createButton" class="createButton">criar</button>
-            </div>
-            <div id="taskList" class="taskList"></div>
-        </div>
-    </main>
-    <script src="main.js"></script>
-    <script src="//code.iconify.design/1/1.0.6/iconify.min.js"></script>
+
+<body>
+  <h1 class="title">To do list</h1>
+  <div class="container">
+    <div class="input-container">
+      <input type="text" id="input" placeholder="Enter a task">
+      <i class="alert">
+        <p>
+           Campo vazio!
+        </p>
+      </i>
+      <button id="add-btn">Add</button>
+    </div>
+    <ul id="task-list" class="task-list"></ul>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/js-circle-progress/dist/circle-progress.min.js" type="module"></script>
+<circle-progress value="0" max="0" class="container"></circle-progress>
+  <p class="completed-message">
+     All tasks completed!
+  </p>
+  
+  <script src="script.js"></script>
 </body>
+
 </html>
