@@ -78,7 +78,8 @@ button {
   padding: 0.5rem;
   margin-bottom: 0.5rem;
   border-radius: 4px;
-  background-color: #3a3a3a;
+  font-weight: bold;
+  background-color: #8ede3e;
   display: flex;
   justify-content: space-between;
   align-items: center;
