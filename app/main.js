@@ -9,6 +9,10 @@ const completedMessage = document.querySelector('.completed-message');
 
 let taskArray = [];
 
+const cleanInput = () => {
+    taskInput.value = "";
+  }
+
 const createTask = (task) => {
   if (task.trim() === '') {
     alert.setAttribute('style', 'display: block;');
@@ -93,7 +97,10 @@ const saveStorage = () => {
   localStorage.setItem('taskArray', JSON.stringify(taskArray));
 }
 
-addBtn.addEventListener('click', () => createTask(taskInput.value))
+addBtn.addEventListener('click', () =>
+{ createTask(taskInput.value);
+  cleanInput();
+})
 window.addEventListener('load', () => {
   const savedTasks = JSON.parse(localStorage.getItem('taskArray'));
   if (savedTasks) {
